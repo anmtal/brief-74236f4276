@@ -313,7 +313,7 @@ const PROSPECT = {
     tag:"Your customers already want to refer you",
     title:"One of your reviews is literally a customer offering to sell for you.",
     quotes:[
-      "I’m gonna recommend this to all my friends really amazing company! I love it. <span style=\'opacity:.6\'>— a happy customer, unprompted</span>",
+      "I’m gonna recommend this to all my friends really amazing company! I love it <span style=\'opacity:.6\'>— a happy customer, unprompted</span>",
       "My only regret is not finding them sooner. Very honest, trustworthy, courteous and reliable. Ifran and his team are the best. <span style=\'opacity:.6\'>— Sue, on her 2nd year</span>"
     ],
     what:"That first one is free sales, offered to you. Multiply it across a decade of happy clients and it should be a flood of reviews and referrals. Instead it’s a trickle — because <b>nobody’s asking on purpose.</b>"
@@ -321,15 +321,13 @@ const PROSPECT = {
   second:{
     eyebrow:"The word-of-mouth you’re not capturing",
     head:"A decade of goodwill, and only 77 reviews to show for it.",
-    lede:"Your customers clearly love you — second and third years, commercial superintendents, “best I’ve found.” But there’s no system turning that into online proof, so the next customer Googling you sees a fraction of the real picture, and your referrals happen by accident.",
+    lede:"Your customers clearly love you — second and third years, commercial superintendents, more than one calling your team the best they’ve had. But there’s no system turning that into online proof, so the next customer Googling you sees a fraction of the real picture, and your referrals happen by accident.",
     evidence:[
       {ok:true,  t:"A decade of loyal residential + commercial clients — the reputation is real and earned."},
-      {ok:false, t:"Only <b>77 reviews in ten years</b> — so you rank below newer shops who simply ask every customer."},
+      {ok:false, t:"Only <b>77 reviews in ten years</b> — so newer shops that ask every customer can out-rank you on Google."},
       {ok:false, t:"A customer wrote “I’m gonna recommend this to all my friends” — and nothing captured it. That’s the gap, in one review."}
     ],
-    calc:{ currency:"CAD",
-      caption:"A year of referrals you’re leaving to chance",
-      per:"from customers who already love the work",
+    calc:{ currency:"CAD", caption:"A year of referrals you’re leaving to chance", per:"from customers who already love the work",
       base:{label:"Jobs you finish happy in a year", value:120, min:30, max:400, step:10},
       rate:{label:"Share who’d refer or review if you simply asked", value:12, min:2, max:30, step:1},
       price:{label:"What one new customer is worth to you", value:1200, min:300, max:5000, step:100} },
@@ -440,7 +438,9 @@ const PROSPECT = {
   $('ctaBtn').setAttribute('href', P.close.ctaHref);
   $('reassure').textContent  = P.close.reassure;
 
-  // calculator (config-driven; multiplier defaults to 1 = no hidden constant)
+  // calculator (config-driven). Skipped entirely when there is no leak calc
+  // (e.g. referral pages that set hideLeakCalc) — avoids a TypeError on P.calc.
+  if (P.calc) {
   var C = P.calc;
   var mult = (C.multiplier != null) ? C.multiplier : (C.weeksPerMonth || 1);
   var fmt = new Intl.NumberFormat('en-CA', {style:'currency', currency:C.currency, maximumFractionDigits:0});
@@ -487,6 +487,7 @@ const PROSPECT = {
   ticket.addEventListener('input', function(){ update(true); });
   lost.addEventListener('input', function(){ update(true); });
   update(false);
+  } // end leak calculator (P.calc guard)
 })(PROSPECT);
 </script>
 </body>
