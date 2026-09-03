@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Audience of one. Never let a search engine find this. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Mr. Lawnmower — a private note</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LEAK REPORT — reusable gift-page template (Apex Web Studio)
+   To reuse for a new prospect: edit ONLY the PROSPECT config
+   block in the <script> at the bottom, then redeploy.
+   ============================================================ */
+:root{
+  --paper:#f6f4ef; --card:#fffdf9; --ink:#191c1f; --ink-soft:#3f454b;
+  --muted:#7b8288; --line:#e5e1d8; --line-strong:#d5cfc2;
+  --brand:#0f7a63;      /* trust / money-saved green */
+  --leak:#c23b22;       /* money-bleeding red */
+  --leak-soft:#f7e7e2;
+  --shadow:0 1px 2px rgba(25,28,31,.04),0 12px 40px -18px rgba(25,28,31,.22);
+  --maxw:760px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  line-height:1.6; font-size:17px; letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.02em;line-height:1.1;margin:0}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* sample banner */
+#sampleBanner{display:none;background:#1c1f22;color:#ffd7a8;font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-align:center;padding:9px 16px;letter-spacing:.02em}
+body.sample #sampleBanner{display:block}
+
+/* masthead */
+header.top{padding:64px 0 28px}
+.kicker{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--leak);box-shadow:0 0 0 4px var(--leak-soft)}
+header.top h1{font-size:clamp(30px,6vw,46px);margin:0 0 18px}
+.prepared{font-size:15px;color:var(--ink-soft)}
+.prepared b{color:var(--ink);font-weight:600}
+.privacy-note{margin-top:22px;font-size:13.5px;color:var(--muted);border-left:2px solid var(--line-strong);padding-left:14px;max-width:52ch}
+
+section{padding:30px 0}
+.rule{height:1px;background:var(--line);margin:6px 0}
+
+/* the numbers */
+.numbers{display:flex;flex-wrap:wrap;gap:26px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow)}
+.score{display:flex;align-items:baseline;gap:8px}
+.score .big{font-family:'Fraunces',serif;font-size:52px;font-weight:600;line-height:1}
+.score .stars{color:#e8a13a;font-size:19px;letter-spacing:2px}
+.score .count{color:var(--muted);font-size:14px;margin-top:6px}
+.dist{flex:1;min-width:230px}
+.dist .row{display:flex;align-items:center;gap:10px;margin:3px 0;font-size:12.5px;color:var(--muted)}
+.dist .row .lab{width:26px;text-align:right}
+.dist .bar{flex:1;height:8px;background:#ece8df;border-radius:6px;overflow:hidden}
+.dist .bar i{display:block;height:100%;border-radius:6px;background:#cdb98f}
+.dist .row.bad .bar i{background:var(--leak)}
+.dist .row .n{width:34px;text-align:left;color:var(--ink-soft)}
+.readline{margin-top:22px;font-family:'Fraunces',serif;font-size:clamp(19px,3.4vw,24px);line-height:1.35;color:var(--ink)}
+.readline .hl{color:var(--leak);font-style:italic}
+
+/* patterns */
+.sec-head{margin-bottom:22px}
+.sec-head .eyebrow{display:block;margin-bottom:10px}
+.sec-head h2{font-size:clamp(24px,4.4vw,32px)}
+.cluster{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:16px 0;box-shadow:var(--shadow)}
+.cluster .tag{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--leak)}
+.cluster h3{font-size:21px;margin:8px 0 4px}
+.cluster .quotes{margin:16px 0 4px;display:grid;gap:10px}
+.q{border-left:3px solid var(--line-strong);padding:8px 0 8px 16px;color:var(--ink-soft);font-size:15.5px}
+.q::before{content:'\201C';color:var(--line-strong);font-family:'Fraunces',serif;font-size:22px;line-height:0;position:relative;top:6px;margin-right:2px}
+.cluster .what{margin-top:16px;font-size:14px;color:var(--muted);background:#f1efe8;border-radius:10px;padding:11px 14px}
+.cluster .what b{color:var(--brand)}
+
+/* calculator */
+.calc{background:#15181b;color:#f4f1ea;border-radius:20px;padding:34px 30px;box-shadow:0 20px 60px -24px rgba(0,0,0,.6);margin-top:8px}
+.calc .eyebrow{color:#9aa1a8}
+.calc h2{color:#fff;font-size:clamp(22px,4vw,28px);margin:10px 0 6px}
+.calc .sub{color:#b7bcc2;font-size:15px;max-width:48ch}
+.calcnote{margin:9px 0 0;font-size:12.5px;color:#8b9298;line-height:1.45}
+.ctrl{margin:26px 0}
+.ctrl .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.ctrl label{font-size:14.5px;color:#d7dbe0}
+.ctrl .val{font-family:'IBM Plex Mono',monospace;font-size:19px;color:#fff;font-weight:600}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:#33383d;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:5px solid var(--brand);cursor:grab;box-shadow:0 3px 10px rgba(0,0,0,.4)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:5px solid var(--brand);cursor:grab}
+input[type=range]:active::-webkit-slider-thumb{cursor:grabbing}
+.result{margin-top:30px;border-top:1px solid #2c3136;padding-top:26px;text-align:center}
+.result .cap{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#9aa1a8;font-family:'IBM Plex Mono',monospace}
+.result .money{font-family:'Fraunces',serif;font-weight:600;color:#ff7a5c;font-size:clamp(46px,11vw,78px);line-height:1;margin:8px 0 4px;letter-spacing:-.02em}
+.result .per{color:#b7bcc2;font-size:15px}
+.result .annual{margin-top:10px;font-family:'IBM Plex Mono',monospace;color:#e6b3a5;font-size:14px}
+.yours{margin-top:22px;font-size:13.5px;color:#8b9298;font-style:italic}
+
+/* second leak (seasonal / cross-sell) */
+.second{background:#eef3f6;border:1px solid #d3e0e8;border-radius:20px;padding:32px 30px;margin-top:8px}
+.second .eyebrow{color:#5b7386}
+.second h2{font-size:clamp(22px,4vw,30px);margin:10px 0 8px;color:#16303f}
+.second .lede{color:#3c5666;font-size:16px;max-width:56ch;margin:0 0 22px}
+.second .evid{display:grid;gap:9px;margin:20px 0 24px}
+.second .evid div{display:flex;gap:11px;align-items:flex-start;font-size:15px;color:#2d4757}
+.second .evid .mk{flex:none;width:19px;height:19px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:2px}
+.second .evid .yes .mk{background:#d7ece0;color:#14663f}
+.second .evid .no .mk{background:#f6dcd6;color:#a5341c}
+.second .calcbox{background:#16303f;border-radius:16px;padding:26px 24px;color:#eaf1f5}
+.second .calcbox .ctrl label{color:#c3d3dd}
+.second .calcbox .val{color:#fff}
+.second .calcbox input[type=range]{background:#2c4a5c}
+.second .calcbox input[type=range]::-webkit-slider-thumb{border-color:#4f9ec7}
+.second .calcbox input[type=range]::-moz-range-thumb{border-color:#4f9ec7}
+.second .result{border-top:1px solid #2c4a5c}
+.second .result .cap{color:#9db4c2}
+.second .result .money{color:#7ec8f0}
+.second .result .per{color:#c3d3dd}
+.second .foot{margin-top:18px;font-size:13.5px;color:#5b7386;font-style:italic}
+
+/* site notes */
+.notes{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 28px;box-shadow:var(--shadow)}
+.notes h2{font-size:clamp(21px,3.6vw,26px);margin-bottom:6px}
+.notes .lede{color:var(--muted);font-size:14.5px;margin:0 0 20px;max-width:56ch}
+.notes ul{list-style:none;margin:0;padding:0;display:grid;gap:13px}
+.notes li{display:flex;gap:12px;align-items:flex-start}
+.notes li .x{flex:none;width:20px;height:20px;border-radius:50%;background:var(--leak-soft);color:var(--leak);display:grid;place-items:center;font-size:12px;font-weight:700;margin-top:2px}
+.notes li b{color:var(--ink);font-weight:600}
+.notes li span{color:var(--ink-soft);font-size:15.5px}
+.notes .checkable{margin-top:20px;font-size:13px;color:var(--muted);background:#f1efe8;border-radius:10px;padding:11px 14px}
+
+/* close */
+.close{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 30px;box-shadow:var(--shadow)}
+.close h2{font-size:clamp(22px,4vw,28px);margin-bottom:12px}
+.close p{color:var(--ink-soft);font-size:16px;margin:0 0 10px;max-width:58ch}
+.close .flatter{color:var(--brand);font-weight:600}
+.cta{display:inline-flex;align-items:center;gap:9px;margin-top:20px;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:15.5px;padding:15px 24px;border-radius:12px;transition:transform .12s ease,background .12s ease}
+.cta:hover{transform:translateY(-1px);background:#000}
+.cta .arrow{transition:transform .15s ease}
+.cta:hover .arrow{transform:translateX(3px)}
+.reassure{margin-top:16px;font-size:13px;color:var(--muted)}
+
+footer{padding:44px 0 60px;color:var(--muted);font-size:13px}
+footer .line{height:1px;background:var(--line);margin-bottom:20px}
+footer b{color:var(--ink-soft)}
+footer .fine{margin-top:8px;font-size:12px;opacity:.8}
+
+@media (max-width:560px){
+  header.top{padding:40px 0 20px}
+  .numbers{padding:22px}
+  .calc{padding:26px 20px}
+}
+</style>
+</head>
+<body>
+<div id="sampleBanner">⚠ TEMPLATE PREVIEW — swap the PROSPECT config &amp; real review quotes before sending. Set sampleMode:false to hide this.</div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="kicker"><span class="dot"></span><span class="eyebrow" id="kickerText">Private briefing · audience of one</span></div>
+    <h1 id="headline">What your reviews are quietly costing you</h1>
+    <p class="prepared">Prepared for <b id="bizName">The Sprinkler Company Inc.</b> · <span id="bizLoc">Vaughan, ON</span> · <span id="dateLabel">September 2026</span></p>
+    <p class="privacy-note" id="privacyNote">Everything below comes from your own public Google reviews — nothing private, nothing purchased. This page is unlisted, set to no-index, and built for exactly one reader. That discretion is a preview of how I'd treat your business.</p>
+  </div>
+</header>
+
+
+
+<section id="secondWrap" style="display:none">
+  <div class="wrap">
+    <div class="second">
+      <span class="eyebrow" id="secondEyebrow"></span>
+      <h2 id="secondHead"></h2>
+      <p class="lede" id="secondLede"></p>
+      <div class="evid" id="secondEvid"></div>
+
+      <div class="calcbox">
+        <div class="ctrl">
+          <div class="top"><label for="s_base" id="s_baseLabel"></label><span class="val mono" id="s_baseOut"></span></div>
+          <input type="range" id="s_base">
+        </div>
+        <div class="ctrl">
+          <div class="top"><label for="s_rate" id="s_rateLabel"></label><span class="val mono" id="s_rateOut"></span></div>
+          <input type="range" id="s_rate">
+        </div>
+        <div class="ctrl">
+          <div class="top"><label for="s_price" id="s_priceLabel"></label><span class="val mono" id="s_priceOut"></span></div>
+          <input type="range" id="s_price">
+        </div>
+        <div class="result">
+          <div class="cap" id="s_cap"></div>
+          <div class="money mono" id="s_money">$0</div>
+          <div class="per" id="s_per"></div>
+        </div>
+      </div>
+      <p class="foot" id="secondFoot"></p>
+    </div>
+  </div>
+</section>
+
+<section id="notesWrap" style="display:none">
+  <div class="wrap">
+    <div class="notes">
+      <span class="eyebrow">While I was looking</span>
+      <h2 id="notesHead"></h2>
+      <p class="lede" id="notesLede"></p>
+      <ul id="notesList"></ul>
+      <div class="checkable" id="notesFoot"></div>
+    </div>
+  </div>
+</section>
+
+<section id="numbersWrap">
+  <div class="wrap">
+    <div class="numbers">
+      <div class="score">
+        <div>
+          <div class="big mono" id="ratingVal">4.9</div>
+          <div class="stars">★★★★★</div>
+          <div class="count"><span id="reviewCount">491</span> Google reviews</div>
+        </div>
+      </div>
+      <div class="dist" id="dist"><!-- bars injected --></div>
+    </div>
+    <p class="readline" id="readline"></p>
+  </div>
+</section>
+
+<section id="clustersWrap">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The pattern</span>
+      <h2>Your customers already wrote down what's leaking</h2>
+    </div>
+    <div id="clusters"><!-- clusters injected --></div>
+  </div>
+</section>
+
+<section id="calcWrap">
+  <div class="wrap">
+    <div class="calc">
+      <span class="eyebrow" id="calcEyebrow">Put your own number on it</span>
+      <h2 id="calcHead">You set the inputs. I'm just handing you the pencil.</h2>
+      <p class="sub" id="calcSub">I'm not going to tell you what this is worth — you'd argue with my number. Drag these to whatever's true for your shop and watch the math.</p>
+
+      <div class="ctrl">
+        <div class="top"><label for="ticket" id="ticketLabel">Average value of one job</label><span class="val mono" id="ticketOut">$1,200</span></div>
+        <input type="range" id="ticket">
+        <p class="calcnote" id="ticketNote"></p>
+      </div>
+
+      <div class="ctrl">
+        <div class="top"><label for="lost" id="lostLabel">Inquiries that got away</label><span class="val mono" id="lostOut">2</span></div>
+        <input type="range" id="lost">
+        <p class="calcnote" id="lostNote"></p>
+      </div>
+
+      <div class="result">
+        <div class="cap" id="leakCap">That's roughly</div>
+        <div class="money mono" id="money">$0</div>
+        <div class="per" id="leakPer">that walked to a competitor</div>
+        <div class="annual mono" id="annual"></div>
+      </div>
+      <p class="yours" id="yoursNote">These are your inputs, so it's your number — not mine. Nobody argues with their own math.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="close">
+      <h2 id="closeHead">This is a good problem</h2>
+      <p class="flatter" id="flatter">Read those reviews again: nobody said the work was bad. They said they wanted to give you their money and couldn't do it fast enough.</p>
+      <p id="closeBody">That's not a business that's failing — it's a business with more demand than the current process can hold. The overflow is what the number above is. There's a small patch for it, and it already exists.</p>
+      <a class="cta" id="ctaBtn" href="#" target="_blank" rel="noopener noreferrer">
+        <span id="ctaText">Show me the 20-minute patch</span><span class="arrow">→</span>
+      </a>
+      <p class="reassure" id="reassure">On a quick call, your own phone gets the exact text one of your leads would get — while you watch. Nothing to install, nothing to sign.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="line"></div>
+    <div>Prepared privately by <b id="preparedBy">Anmol Talwar — Apex Web Studio</b>.</div>
+    <div class="fine">This page is unlisted &amp; set to no-index. Built from public Google reviews for an audience of one. If you'd rather I take it down, just say the word and it's gone.</div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================================
+   PROSPECT CONFIG — the ONLY thing you edit per business.
+   Swap the values, drop in the real review quotes, set sampleMode:false,
+   redeploy to an unguessable URL. ~5 minutes.
+   ========================================================================= */
+const PROSPECT = {
+  sampleMode:false, hideLeakCalc:true,
+  name:"Irfan", location:"Mr. Lawnmower · Scarborough, ON",
+  preparedBy:"Anmol Talwar — Apex Web Studio", dateLabel:"September 2026",
+  kicker:"A private note · just for you",
+  headline:"A few things I noticed that you can’t see from the inside",
+  rating:4.7, reviewCount:77, distribution:{5:67,4:5,3:1,2:0,1:4},
+  readline:"A decade in, commercial contracts, customers on their second and third year — one even wrote “I’m gonna recommend this to all my friends.” But <span class=\'hl\'>only 77 reviews</span> means most of that word-of-mouth never makes it online, where your next customer is looking.",
+  clusters:[{
+    tag:"Your customers already want to refer you",
+    title:"One of your reviews is literally a customer offering to sell for you.",
+    quotes:[
+      "I’m gonna recommend this to all my friends really amazing company! I love it. <span style=\'opacity:.6\'>— a happy customer, unprompted</span>",
+      "My only regret is not finding them sooner. Very honest, trustworthy, courteous and reliable. Ifran and his team are the best. <span style=\'opacity:.6\'>— Sue, on her 2nd year</span>"
+    ],
+    what:"That first one is free sales, offered to you. Multiply it across a decade of happy clients and it should be a flood of reviews and referrals. Instead it’s a trickle — because <b>nobody’s asking on purpose.</b>"
+  }],
+  second:{
+    eyebrow:"The word-of-mouth you’re not capturing",
+    head:"A decade of goodwill, and only 77 reviews to show for it.",
+    lede:"Your customers clearly love you — second and third years, commercial superintendents, “best I’ve found.” But there’s no system turning that into online proof, so the next customer Googling you sees a fraction of the real picture, and your referrals happen by accident.",
+    evidence:[
+      {ok:true,  t:"A decade of loyal residential + commercial clients — the reputation is real and earned."},
+      {ok:false, t:"Only <b>77 reviews in ten years</b> — so you rank below newer shops who simply ask every customer."},
+      {ok:false, t:"A customer wrote “I’m gonna recommend this to all my friends” — and nothing captured it. That’s the gap, in one review."}
+    ],
+    calc:{ currency:"CAD",
+      caption:"A year of referrals you’re leaving to chance",
+      per:"from customers who already love the work",
+      base:{label:"Jobs you finish happy in a year", value:120, min:30, max:400, step:10},
+      rate:{label:"Share who’d refer or review if you simply asked", value:12, min:2, max:30, step:1},
+      price:{label:"What one new customer is worth to you", value:1200, min:300, max:5000, step:100} },
+    foot:"You don’t publish rates, so that last number is a placeholder — drag it to your real one. The point stands: your customers already want to refer you. The only missing piece is asking them, every time, automatically."
+  },
+  close:{
+    head:"None of this is a knock — the opposite",
+    flatter:"You’ve earned a decade of loyalty and customers who volunteer to refer you. This is just about catching that instead of letting it evaporate.",
+    body:"I’ve mapped out how each piece would run. Happy to walk you through it, or not — no pressure either way.",
+    ctaText:"Show me how it’d work", ctaHref:"https://calendar.app.google/vFYAZKr6uG3jSD618",
+    reassure:"On a short call I’ll show you exactly how a happy customer turns into a fresh 5-star and a referral, on autopilot. Nothing to install, nothing to sign."
+  }
+};
+
+/* ===================== render (no need to edit below) ===================== */
+(function render(P){
+  var $ = function(id){ return document.getElementById(id); };
+  document.body.classList.toggle('sample', !!P.sampleMode);
+
+  $('kickerText').textContent = P.kicker;
+  $('headline').textContent   = P.headline;
+  $('bizName').textContent    = P.name;
+  $('bizLoc').textContent     = P.location;
+  $('dateLabel').textContent  = P.dateLabel;
+  $('preparedBy').textContent = P.preparedBy;
+
+  $('ratingVal').textContent   = P.rating.toFixed(1);
+  $('reviewCount').textContent = P.reviewCount.toLocaleString();
+  $('readline').innerHTML      = P.readline;
+
+  // distribution bars
+  var dist = P.distribution, total = P.reviewCount || 1, distHtml = "";
+  [5,4,3,2,1].forEach(function(s){
+    var n = dist[s] || 0, pct = Math.max(1.5, (n/total)*100), bad = (s<=3 && n>0);
+    distHtml += '<div class="row'+(bad?' bad':'')+'"><span class="lab">'+s+'★</span>'
+      + '<span class="bar"><i style="width:'+pct.toFixed(1)+'%"></i></span>'
+      + '<span class="n">'+n+'</span></div>';
+  });
+  $('dist').innerHTML = distHtml;
+
+  // clusters
+  var cl = "";
+  P.clusters.forEach(function(c){
+    var qs = c.quotes.map(function(q){ return '<div class="q">'+q+'</div>'; }).join("");
+    cl += '<div class="cluster"><div class="tag">'+c.tag+'</div>'
+        + '<h3>'+c.title+'</h3><div class="quotes">'+qs+'</div>'
+        + '<div class="what">'+c.what+'</div></div>';
+  });
+  $('clusters').innerHTML = cl;
+
+  if (!P.clusters || !P.clusters.length) { var cw=$('clustersWrap'); if(cw) cw.style.display='none'; }
+  if (P.hideLeakCalc) { var kw=$('calcWrap'); if(kw) kw.style.display='none'; }
+
+  // ---- optional section: a second, seasonal / cross-sell leak ----
+  if (P.second) {
+    var S = P.second;
+    $('secondWrap').style.display = '';
+    $('secondEyebrow').textContent = S.eyebrow;
+    $('secondHead').textContent    = S.head;
+    $('secondLede').innerHTML      = S.lede;
+    $('secondEvid').innerHTML = (S.evidence||[]).map(function(e){
+      var ok = e.ok ? 'yes' : 'no';
+      return '<div class="'+ok+'"><span class="mk">'+(e.ok?'✓':'✕')+'</span><span>'+e.t+'</span></div>';
+    }).join('');
+
+    var C2 = S.calc, f2 = new Intl.NumberFormat('en-CA',{style:'currency',currency:C2.currency||'CAD',maximumFractionDigits:0});
+    var base=$('s_base'), rate=$('s_rate'), price=$('s_price');
+    [['base',base],['rate',rate],['price',price]].forEach(function(pair){
+      var cfg=C2[pair[0]], el=pair[1];
+      el.min=cfg.min; el.max=cfg.max; el.step=cfg.step; el.value=cfg.value;
+      $('s_'+pair[0]+'Label').textContent = cfg.label;
+    });
+    $('s_cap').textContent = S.calc.caption || 'That would be';
+    $('s_per').textContent = S.calc.per || '';
+
+    var s_safe=null;
+    function upd2(){
+      $('s_baseOut').textContent  = (+base.value).toLocaleString();
+      $('s_rateOut').textContent  = (+rate.value) + '%';
+      $('s_priceOut').textContent = f2.format(+price.value);
+      var total = Math.round((+base.value) * ((+rate.value)/100) * (+price.value));
+      $('s_money').textContent = f2.format(total);
+      if(s_safe) clearTimeout(s_safe);
+      s_safe = setTimeout(function(){ $('s_money').textContent = f2.format(total); }, 400);
+    }
+    [base,rate,price].forEach(function(el){ el.addEventListener('input', upd2); });
+    upd2();
+    $('secondFoot').textContent = S.foot || '';
+  }
+
+  // ---- optional section: things noticed on their website ----
+  if (P.siteNotes && P.siteNotes.items && P.siteNotes.items.length) {
+    var N = P.siteNotes;
+    $('notesWrap').style.display = '';
+    $('notesHead').textContent = N.head;
+    $('notesLede').textContent = N.lede;
+    $('notesList').innerHTML = N.items.map(function(it){
+      return '<li><span class="x">✕</span><span><b>'+it.t+'</b> — '+it.d+'</span></li>';
+    }).join('');
+    $('notesFoot').textContent = N.foot || '';
+  }
+
+  // close
+  $('closeHead').textContent = P.close.head;
+  $('flatter').textContent   = P.close.flatter;
+  $('closeBody').textContent = P.close.body;
+  $('ctaText').textContent   = P.close.ctaText;
+  $('ctaBtn').setAttribute('href', P.close.ctaHref);
+  $('reassure').textContent  = P.close.reassure;
+
+  // calculator (config-driven; multiplier defaults to 1 = no hidden constant)
+  var C = P.calc;
+  var mult = (C.multiplier != null) ? C.multiplier : (C.weeksPerMonth || 1);
+  var fmt = new Intl.NumberFormat('en-CA', {style:'currency', currency:C.currency, maximumFractionDigits:0});
+  if (P.calcCopy) {
+    if (P.calcCopy.eyebrow) $('calcEyebrow').textContent = P.calcCopy.eyebrow;
+    if (P.calcCopy.head)    $('calcHead').textContent    = P.calcCopy.head;
+    if (P.calcCopy.sub)     $('calcSub').textContent     = P.calcCopy.sub;
+    if (P.calcCopy.cap)     $('leakCap').textContent     = P.calcCopy.cap;
+    if (P.calcCopy.per)     $('leakPer').textContent     = P.calcCopy.per;
+    if (P.calcCopy.yours)   $('yoursNote').textContent   = P.calcCopy.yours;
+  }
+  $('ticketLabel').textContent = C.ticket.label || 'Average value of one job';
+  $('lostLabel').textContent   = C.lost.label   || 'Inquiries that got away';
+  $('ticketNote').innerHTML    = C.ticket.note  || '';
+  $('lostNote').innerHTML      = C.lost.note    || '';
+  var ticket = $('ticket'), lost = $('lost');
+  ticket.min=C.ticket.min; ticket.max=C.ticket.max; ticket.step=C.ticket.step; ticket.value=C.ticket.value;
+  lost.min=C.lost.min; lost.max=C.lost.max; lost.step=C.lost.step; lost.value=C.lost.value;
+  var lostSuffix = (C.lost.suffix != null) ? C.lost.suffix : '';
+  var ticketIsMoney = (C.ticket.money !== false);
+
+  var moneyEl=$('money'), annualEl=$('annual'), shown=0, raf=null, safeT=null;
+  function target(){ return (+ticket.value) * (+lost.value) * mult; }
+  function paint(v){ moneyEl.textContent = fmt.format(Math.round(v)); }
+  function animateTo(t){
+    if(raf) cancelAnimationFrame(raf);
+    var start=shown, delta=t-start, t0=null, dur=380;
+    function step(ts){ if(!t0)t0=ts; var k=Math.min(1,(ts-t0)/dur); var e=1-Math.pow(1-k,3);
+      shown=start+delta*e; paint(shown); if(k<1){raf=requestAnimationFrame(step);} else {shown=t; paint(t);} }
+    raf=requestAnimationFrame(step);
+  }
+  function update(animate){
+    $('ticketOut').textContent = ticketIsMoney ? fmt.format(+ticket.value) : (+ticket.value).toLocaleString();
+    $('lostOut').textContent   = (+lost.value) + lostSuffix;
+    var t=target();
+    if(animate){ animateTo(t); } else { shown=t; paint(t); }
+    if (C.annualLabel) { annualEl.textContent = C.annualLabel.replace('{v}', fmt.format(Math.round(t * (C.annualMult||1)))); }
+    else { annualEl.textContent = ''; }
+    // safety net: guarantee the final number lands even if requestAnimationFrame is
+    // throttled (background tab / reduced-motion). setTimeout fires regardless.
+    if(safeT) clearTimeout(safeT);
+    safeT = setTimeout(function(){ if(Math.abs(shown-t) > 0.5){ shown=t; paint(t); } }, 520);
+  }
+  ticket.addEventListener('input', function(){ update(true); });
+  lost.addEventListener('input', function(){ update(true); });
+  update(false);
+})(PROSPECT);
+</script>
+</body>
+</html>
